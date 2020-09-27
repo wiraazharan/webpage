@@ -1,31 +1,732 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>JS Tutorial</title>
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+    integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 
   <style>
-    body{
-      background-color: #000;
-      color: #fff;
+    .card-margin {
+      margin: 0 auto;
     }
 
-    h1{
-      color:antiquewhite;
+    .margin-top {
+      margin-top: 30px;
+    }
+  </style>
+
+
+
+  <style>
+    #todoScope {
+      display: block;
+    }
+
+    #space {
+      display: block;
+      /* display: none; */
+    }
+
+    #addListBtn {
+      margin: 30px 0;
+    }
+
+    span {
+      display: block;
+    }
+
+    .strikedClass {
+      text-decoration: line-through;
+    }
+
+    .margin-top {
+      margin-top: 30px;
+    }
+
+    .card-margin {
+      margin: 0 auto;
+    }
+
+    .dont-display {
+      /* display: none; */
     }
   </style>
 
 </head>
+
 <body>
-  <h1>Test</h1>
-  <p>This is the description</p>
+
+  <div class="modal" tabindex="-1" id="myModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Student</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p>Keep Track your Students</p>
+          <form>
+            <div class="form-group">
+              <label for="">Name</label>
+              <input type="text" class="form-control" id="name" placeholder="name">
+            </div>
+            <div class="form-group">
+              <label for="">Marks</label>
+              <input type="text" class="form-control" id="marks" placeholder="marks">
+            </div>
+            <div class="form-group">
+              <label for="">Select Class</label>
+              <select class="form-control" id="listOfClasses">
+                <!-- <option value="A">A</option> -->
+              </select>
+            </div>
+
+            <!-- <button type="submit" id="getWeatherBtn" class="btn btn-primary">Get Weather Result</button> -->
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" id="addStudent" class="btn btn-primary">Add Student</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container margin-top dont-display">
+
+    <div class="section margin-top text-center">
+      <button class="btn btn-success" type="button" data-toggle="modal" data-target="#myModal">Add Student</button>
+    </div>
+
+    <div class="section margin-top text-center">
+      <table id="studentTable" class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Marks</th>
+            <th scope="col">Class</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody id="studentTableBody">
+          <tr>
+            <td>1</td>
+            <td>Mark</td>
+            <td>Otto</td>
+            <td>@mdo</td>
+          </tr>
+        </tbody>
+      </table>
+      <button class="btn btn-info" type="button" id="downloadStudentList">Download List of Student</button>
+    </div>
+
+
+    <div class="section text-center margin-top">
+      <button id="refreshChart" class="btn btn-success" type="button">Get Student Chart</button><br>
+      <canvas class="margin-top" id="myChart" width="400" height="100"></canvas>
+    </div>
+
+
+    <div class="section text-center margin-top">
+      <button id="averageChart" class="btn btn-success" type="button">Get Average By Class Chart</button><br>
+      <canvas class="margin-top" id="avgChart" width="400" height="100"></canvas>
+    </div>
+
+
+    <div class="section text-center margin-top">
+      <button id="searchGif" class="btn btn-success" type="button">Search GIF</button><br>
+      <input id="searchInput" class="form-control margin-top" placeholder="Search GIF" /><br>
+      <img id="gifphy" class="img-fluid margin-top" src="" alt="">
+    </div>
+
+
+    <div class="container" style="display: none;">
+      <div class="row text-center">
+        <div class="col-6">
+          One of three columns
+        </div>
+        <div class="col-2">
+          One of three columns
+        </div>
+        <div class="col-6">
+          One of three columns
+        </div>
+        <div class="col-6">
+          One of three columns
+        </div>
+        <div class="col-6">
+          One of three columns
+        </div>
+        <div class="col-6">
+          One of three columns
+        </div>
+        <div class="col-6">
+          One of three columns
+        </div>
+        <div class="col-6">
+          One of three columns
+        </div>
+        <div class="col-6">
+          One of three columns
+        </div>
+        <div class="col-6">
+          One of three columns
+        </div>
+        <div class="col-6">
+          One of three columns
+        </div>
+        <div class="col-6">
+          One of three columns
+        </div>
+        <div class="col-12">
+          One of three columns
+        </div>
+      </div>
+    </div>
 
 
 
 
 
+    <!-- <section>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">First</th>
+            <th scope="col">Last</th>
+            <th scope="col">Handle</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">1</th>
+            <td>Mark</td>
+            <td>Otto</td>
+            <td>@mdo</td>
+          </tr>
+          <tr>
+            <th scope="row">2</th>
+            <td>Jacob</td>
+            <td>Thornton</td>
+            <td>@fat</td>
+          </tr>
+          <tr>
+            <th scope="row">3</th>
+            <td>Larry</td>
+            <td>the Bird</td>
+            <td>@twitter</td>
+          </tr>
+        </tbody>
+      </table>
+    </section> -->
+  </div>
 
 
 
+  <!-- <img id="rainbow" src="" alt="" width="480">
+  <option value=""></option>
+  <button>Get Weather</button>
+
+  <button id="get-btn">Get Button</button>
+  <button id="post-btn">Post Button</button> -->
+
+  <!-- <div id="todoScope">
+    <h1>ES6</h1>
+
+    <input type="text" id="inputList" placeholder="Add todo list">
+    <button id="addListBtn">Add</button>
+    <ul id="todoList">
+    </ul>
+  </div> -->
+
+  <!-- <ul id="testclear">
+    <li>one</li>
+    <li>two</li>
+    <li>one</li>
+    <li>one</li>
+  </ul> -->
+
+  <!-- <div id="space">
+    <h1>Array shift & unshift</h1>
+  </div> -->
+
+
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+    integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+    integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+    crossorigin="anonymous"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"></script>
+  <script lang="javascript" src="xlsx.full.min.js"></script>
+  <script lang="javascript" src="FileSaver.min.js"></script>
+
+  <script>
+    //Setup class
+
+    //Goal here : dynamic select option
+
+    //attach select element to javascript variable
+    let listOfClassSelector = document.getElementById('listOfClasses');
+    // let listOfClassSelector = document.getElementById('refreshChart');
+
+    //prepare select options
+    let listOfClasses = ['A', 'B', 'C', 'D'];
+    listOfClasses.map((item, index) => {
+      let option = document.createElement('option');
+      option.setAttribute('value', item);
+      option.innerHTML = item;
+
+      listOfClassSelector.appendChild(option);
+    })
+    // fetch("http://cig.com/api/v1/mobile/getListOfEndpoint").then(response => {
+    //   // console.log(response);
+    //   return response.json();
+    // }).then(response => {
+    //   console.log(response);
+    //   let listOfClasses = response;
+
+    //   //attach select element to javascript variable
+    //   let listOfClassSelector = document.getElementById('listOfClasses');
+    //   // let listOfClassSelector = document.getElementById('refreshChart');
+
+
+    //   listOfClasses.map((item, index) => {
+    //     let option = document.createElement('option');
+    //     option.setAttribute('value', item);
+    //     option.innerHTML = item;
+
+    //     listOfClassSelector.appendChild(option);
+    //   })
+
+    // }).catch(error => {
+    //   console.log(error);
+    //   // alert("Cannot Get Weather");
+    // })
+
+
+    const test = ""; //string
+    const student = new Object;
+    student.name = name.value;
+    prepareTable(parameter)
+
+
+
+
+    let addStudentButton = document.getElementById('addStudent');
+    let studentListTableBody = document.getElementById('studentTableBody');
+
+    let listOfStudents = [];
+
+    addStudentButton.addEventListener('click', function (e) {
+
+      let name = document.getElementById('name');
+      let marks = document.getElementById('marks');
+      let studentClass = document.getElementById('listOfClasses');
+
+
+      if (validateSimilarUser(name.value) == false) {
+
+      } else {
+
+      }
+
+
+      if (validateSimilarUser(name.value) == false) {
+        alert('Student already Exist');
+      } else {
+        const student = new Object();
+        student.name = name.value;
+        student.marks = marks.value;
+        student.studentClass = studentClass.value;
+
+        listOfStudents.push(student);
+
+        // <tr>
+        //   <th scope="row">1</th>
+        //   <td>Mark</td>
+        //   <td>Otto</td>
+        //   <td>@mdo</td>
+        // </tr>
+
+        console.log(listOfStudents);
+        prepareTable(listOfStudents);
+      }
+
+      // listOfStudents = ['test',23.3,'A', 'test', 23.3, 'A', 'test', 23.3, 'A']
+
+
+    });
+
+
+
+    function validateSimilarUser(name) {
+
+      // return true;
+
+      console.log(name);
+      let similarUserDoesNoExist = true;
+
+      listOfStudents.map((item, index) => {
+        if (item.sarah == name) {
+          similarUserDoesNoExist = false;
+        }
+      })
+
+      return similarUserDoesNoExist;
+
+    }
+
+
+
+    function prepareTable(listOfStudents) {
+
+      studentListTableBody.innerHTML = "";
+
+
+      listOfStudents.map((item, index) => {
+
+        let row = document.createElement('tr');
+        row.setAttribute('scope', 'row');
+
+        let th = document.createElement('th');
+        th.innerHTML = index;
+        row.appendChild(th);
+
+        let td1 = document.createElement('td');
+        td1.innerHTML = item.name;
+        row.appendChild(td1);
+
+        let td2 = document.createElement('td');
+        td2.innerHTML = item.marks;
+        row.appendChild(td2);
+
+        let td3 = document.createElement('td');
+        td3.innerHTML = item.studentClass;
+        row.appendChild(td3);
+
+        let td4 = document.createElement('td');
+        let deleteButton = document.createElement('button')
+        deleteButton.setAttribute('class', 'btn btn-danger deleteButton d-none');
+        deleteButton.setAttribute('id', 'deleteButton');
+        deleteButton.setAttribute('data-item-id', index);
+        deleteButton.innerHTML = "Remove Student";
+        td4.appendChild(deleteButton);
+        row.appendChild(td4);
+
+        studentListTableBody.appendChild(row);
+
+
+      })
+
+
+
+    }
+
+
+
+    document.addEventListener('click', function (e) {
+      if (e.target && (e.target.tagName == 'BUTTON')) { //INTRODUCE TARGET
+
+        switch (e.target.tagName) {
+
+          case "BUTTON":
+
+            switch (e.target.id) {
+
+              case 'deleteButton':
+                var clickedItem = e.target;
+                // console.log(clickedItem);
+                console.log(clickedItem.getAttribute("data-item-id"));
+                listOfStudents.splice(clickedItem.getAttribute("data-item-id"), 1); //INTRODUCE SPLICE
+                console.log(listOfStudents);
+                prepareTable(listOfStudents);
+                break;
+
+              default:
+                break;
+            }
+
+
+            break;
+
+          default:
+            console.log('no match found');
+            break;
+        }
+
+      }
+    });
+
+  </script>
+
+
+  <script>
+
+    let refreshChart = document.getElementById('refreshChart');
+
+    refreshChart.addEventListener('click', function (e) {
+      renderMarksChart();
+    });
+
+
+    function renderMarksChart() {
+
+      let labels = [];
+      let datas = [];
+
+      listOfStudents.map((item, index) => {
+
+        labels.push(item.name)
+        datas.push(item.marks)
+
+
+      });
+
+      var ctx = document.getElementById('myChart').getContext('2d');
+      var myChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels: labels,
+          datasets: [{
+            label: 'Marks',
+            data: datas,
+            backgroundColor: [
+              'rgba(255, 206, 86, 0.2)',
+              'rgba(255, 99, 132, 0.2)',
+              'rgba(54, 162, 235, 0.2)',
+              'rgba(75, 192, 192, 0.2)',
+              'rgba(153, 102, 255, 0.2)',
+              'rgba(255, 159, 64, 0.2)'
+            ],
+            borderColor: [
+              'rgba(255, 206, 86, 1)',
+              'rgba(255, 99, 132, 1)',
+              'rgba(54, 162, 235, 1)',
+              'rgba(75, 192, 192, 1)',
+              'rgba(153, 102, 255, 1)',
+              'rgba(255, 159, 64, 1)'
+            ],
+            borderWidth: 1
+          }]
+        },
+        options: {
+          scales: {
+            yAxes: [{
+              ticks: {
+                beginAtZero: true,
+                min: 0,
+                // max: 50,
+                stepSize: 20
+              }
+            }]
+          }
+        }
+      });
+    }
+
+
+
+
+    //Average Chart
+    let averageChart = document.getElementById('averageChart');
+
+    averageChart.addEventListener('click', function (e) {
+      renderAverageChart();
+    });
+
+
+    function renderAverageChart() {
+
+      let labels = ['Class A', 'Class B', 'Class C', 'Class D'];
+      let datas = [];
+
+      let classA = [];
+      let classB = [];
+      let classC = [];
+      let classD = [];
+
+      listOfStudents.map((item, index) => {
+
+        switch (item.studentClass) {
+          case 'A':
+            classA.push(parseFloat(item.marks))
+            break;
+
+          case 'B':
+            classB.push(parseFloat(item.marks))
+            break;
+
+          case 'C':
+            classC.push(parseFloat(item.marks))
+            break;
+
+          case 'D':
+            classD.push(parseFloat(item.marks))
+            break;
+
+          default:
+            break;
+        }
+
+      });
+
+      let AverageClassA = classA.length > 0 ? classA.reduce((prev, curr) => {
+        return (prev + curr) / classA.length;
+      }) : 0;
+      let AverageClassB = classB.length > 0 ? classB.reduce((prev, curr) => {
+        return (prev + curr) / classB.length;
+      }) : 0;
+      let AverageClassC = classC.length > 0 ? classC.reduce((prev, curr) => {
+        return (prev + curr) / classC.length;
+      }) : 0;
+      let AverageClassD = classD.length > 0 ? classD.reduce((prev, curr) => {
+        return (prev + curr) / classD.length;
+      }) : 0;
+
+      datas.push(AverageClassA);
+      datas.push(AverageClassB);
+      datas.push(AverageClassC);
+      datas.push(AverageClassD);
+
+      console.log(labels)
+      console.log(datas)
+
+      var ctx = document.getElementById('avgChart').getContext('2d');
+      var myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: labels,
+          datasets: [{
+            label: 'Average Marks by Class',
+            data: datas,
+            backgroundColor: [
+              'rgba(255, 99, 132, 0.2)',
+              'rgba(54, 162, 235, 0.2)',
+              'rgba(255, 206, 86, 0.2)',
+              'rgba(75, 192, 192, 0.2)',
+            ],
+            borderColor: [
+              'rgba(255, 99, 132, 1)',
+              'rgba(54, 162, 235, 1)',
+              'rgba(255, 206, 86, 1)',
+              'rgba(75, 192, 192, 1)',
+            ],
+            borderWidth: 1
+          }]
+        },
+        options: {
+          scales: {
+            yAxes: [{
+              ticks: {
+                beginAtZero: true,
+                min: 0,
+                // max: 50,
+                stepSize: 20
+              }
+            }]
+          }
+        }
+      });
+    }
+
+  </script>
+
+  <script>
+
+    function s2ab(s) {
+
+      let buf = new ArrayBuffer(s.length);
+      let view = new Uint8Array(buf);
+      for (let i = 0; i < s.length; i++) view[i] = s.charCodeAt(i) & 0xFF;
+      return buf;
+    }
+
+    let createWorkbook = document.getElementById('downloadStudentList');
+
+    createWorkbook.addEventListener('click', function (e) {
+      let wb = XLSX.utils.table_to_book(document.getElementById('studentTable'), { sheet: "List of Students" });
+      let wbout = XLSX.write(wb, { bookType: 'xlsx', bookSST: true, type: 'binary' });
+      saveAs(new Blob([s2ab(wbout)], { type: "application/octet-stream" }), 'listOfStudent.xlsx');
+    });
+    //create workbook
+    // let wb = XLSX.utils.book_new();
+    // wb.props = {
+    //   Title:"Sheet js tutorial",
+    //   Subject:"Test File",
+    //   Author:"John",
+    //   CreatedDate: new Date(2020,08,23),
+    // }
+
+    // wb.SheetNames.push("Test Sheet");
+
+    // let wb = XLSX.utils.table_to_book(document.getElementById('excelTable'), {sheet:"Sheet JS"});
+    // let wbout = XLSX.write(wb,{bookType:'xlsx', bookSST:true, type:'binary'});
+
+    // function s2ab(s){
+
+    //   let buf = new ArrayBuffer(s.length);
+    //   let view = new Uint8Array(buf);
+    //   for( let i = 0; i<s.length; i++) view[i] = s.charCodeAt(i) & 0xFF;
+    //   return buf;
+    // }
+
+    // let createWorkbook = document.getElementById('createWorkBook');
+
+    // createWorkbook.addEventListener('click', function (e) {
+    //   saveAs(new Blob([s2ab(wbout)],{type:"application/octet-stream"}), 'test.xlsx');
+    // });
+
+
+    //Update Listing to display no starting from 1
+    //Delete list
+
+  </script>
+
+
+  <script>
+
+    let movieSearchBtn = document.getElementById('searchGif');
+    let movieSearchInput = document.getElementById('searchInput');
+    let gifImg = document.getElementById('gifphy');
+    movieSearchBtn.addEventListener('click', (e) => {
+      fetch(`https://api.giphy.com/v1/gifs/search?api_key=wYiMg8xMeyRqn4mPFioK2Pf9lQ8oIPhi&q=${movieSearchInput.value}&limit=1&offset=0&rating=g&lang=en`
+        // , {
+        //   "method": "GET",
+        //   "headers": {
+        //     "x-rapidapi-host": "movie-database-imdb-alternative.p.rapidapi.com",
+        //     "x-rapidapi-key": "m9KncSPYBtmshgAkHEyOA67qLwNip1hSFZIjsnJu7zrfcLw6GC"
+        //   }
+        // }
+      )
+        .then(response => {
+          return response.json();
+          // console.log(response);
+        })
+        .then(response => {
+          console.log(response);
+          gifImg.setAttribute('src', response.data[0].images['480w_still'].url)
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    })
+
+  </script>
 </body>
+
 </html>
